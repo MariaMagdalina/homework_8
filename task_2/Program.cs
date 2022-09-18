@@ -3,28 +3,26 @@ Console.Clear();
 Random rand = new Random();
 
 // функция заполнения двумерного массива случайными числами
-int [,] fill_array(int row, int column)
+void fill_array(int [,]arr)
 {
-   int [,] array = new int [row,column];
-      for(int i=0; i<row; i++)
-      {
-         for(int j=0; j<column; j++)
-         {
-            array[i,j] = rand.Next(0,10);
-         }
-      }
-   return array;
+ for(int i=0; i < arr.GetLength(0); i++)
+ { 
+   for(int j=0; j < arr.GetLength(1); j++)
+   {
+     arr[i,j] = rand.Next(0,10);
+   }
+ }
 }  
 
 // функция нахождения произведение двух матриц 
-int [,] comp_array(int row, int column, int [,] array1, int [,] array2)
+int [,] comp_array(int [,] array1, int [,] array2)
 {
-   int [,] array = new int [row,column];
-   for(int i=0; i<row; i++)
+   int [,] array = new int [array1.GetLength(0),array1.GetLength(1)];
+   for(int i=0; i < array1.GetLength(0); i++)
    {
-      for(int j=0; j<column; j++)
+      for(int j=0; j < array1.GetLength(1); j++)
       {
-         for(int k=0; k<row ; k++)
+         for(int k=0; k < array1.GetLength(0) ; k++)
          {
          array[i,j] = array[i,j] + array1[i,k] * array2[k,j];
          }
@@ -32,8 +30,6 @@ int [,] comp_array(int row, int column, int [,] array1, int [,] array2)
    }
    return array;
 }
-
-
 // основная программа
 int row = rand.Next(2,10); // задаем количество строк
 int column = row; // задаем количество столбцов
@@ -42,21 +38,21 @@ int [,] second_array = new int [row,column]; // создаем двумерны�
 int [,] composition = new int [row,column]; // массив произведения матриц
 
 // заполняем двумерные массивы случайными числами  
-first_array = fill_array(row,column);
-second_array = fill_array(row,column);
+fill_array(first_array);
+fill_array(second_array);
 // находим произведение массивов
-composition = comp_array(row, column, first_array, second_array);
+composition = comp_array(first_array, second_array);
 
 // выводим результаты
 Console.WriteLine("массив 1          массив 2"); 
-for(int i=0; i<row; i++)
+for(int i=0; i < first_array.GetLength(0); i++)
 {
-   for(int j=0; j<column; j++)
+   for(int j=0; j < first_array.GetLength(1); j++)
    {
      Console.Write(first_array[i,j] + "  ");
    }
    Console.Write("            ");
-   for(int j=0; j<column; j++)
+   for(int j=0; j < second_array.GetLength(1); j++)
    {
      Console.Write(second_array[i,j] + "  ");
    }
