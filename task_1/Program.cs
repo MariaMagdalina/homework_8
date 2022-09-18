@@ -7,9 +7,9 @@ int [,] array = new int [row,column]; // создаем двумерный ма�
 int [] summa = new int [row]; // создаем массив, элементами которого будут суммы строк двумерного массива
 
 // заполняем двумерный массив случайными числами 
-for(int i=0; i<row; i++)
+for(int i=0; i < array.GetLength(0); i++)
 {
-   for(int j=0; j<column; j++)
+   for(int j=0; j < array.GetLength(0); j++)
    {
       array[i,j] = rand.Next(-1000,1000);
       Console.Write(array[i,j] + "  ");
@@ -18,10 +18,10 @@ for(int i=0; i<row; i++)
 }
 
 // заполняем одномерный массив
-for(int i=0; i<row; i++)
+for(int i=0; i < array.GetLength(0); i++)
 {
    int sum = 0;
-   for(int j=0; j<column; j++)
+   for(int j=0; j < array.GetLength(1); j++)
    {
       sum = sum + array[i,j];
    }
